@@ -10,3 +10,8 @@ global using Microsoft.IdentityModel.Tokens;
 global using Microsoft.OpenApi.Models;
 global using NSE.Identidade.API.Extensions;
 global using System.Text;
+global using Microsoft.Extensions.Options;
+global using System.IdentityModel.Tokens.Jwt;
+global using System.Security.Claims;
+global using Microsoft.AspNetCore.Mvc.ModelBinding;
+global using NSE.Identidade.API.Configuration;

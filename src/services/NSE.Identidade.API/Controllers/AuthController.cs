@@ -1,13 +1,7 @@
-﻿using Microsoft.Extensions.Options;
-using NSE.Identidade.API.Models;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
+﻿namespace NSE.Identidade.API.Controllers;
 
-namespace NSE.Identidade.API.Controllers;
-
-[ApiController]
 [Route("api/identidade")]
-public class AuthController : Controller
+public class AuthController : MainController
 {
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly UserManager<IdentityUser> _userManager;
@@ -25,7 +19,7 @@ public class AuthController : Controller
     [HttpPost("nova-conta")]
     public async Task<ActionResult> Registrar(UsuarioRegistro usuarioRegistro)
     {
-        if (!ModelState.IsValid) return BadRequest();
+        if (!ModelState.IsValid) return CustomResponse(ModelState);
 
         var user = new IdentityUser
         {
@@ -38,38 +32,60 @@ public class AuthController : Controller
 
         if(result.Succeeded)
         {
-            return Ok(await GerarJwt(usuarioRegistro.Email));
+            return CustomResponse(await GerarJwt(usuarioRegistro.Email));
         }
 
-        return BadRequest();
+        foreach (var error in result.Errors)
+        {
+            AdicionarErroProcessamento(error.Description);
+        }
+
+        return CustomResponse();
     }
 
     [HttpPost("autenticar")]
     public async Task<ActionResult> Login(UsuarioLogin usuarioLogin)
     {
-        if (!ModelState.IsValid) return BadRequest();
+        if (!ModelState.IsValid) return CustomResponse(ModelState);
 
         var user = await _userManager.FindByEmailAsync(usuarioLogin.Email);
 
         if(user == null)
         {
-            return BadRequest();
+            AdicionarErroProcessamento("Usuário ou Senha incorrectos, tente novamente");
+            return CustomResponse();
         }
 
         var result = await _signInManager.CheckPasswordSignInAsync(user, usuarioLogin.Senha, true);
 
-        if(result.Succeeded)
+        if (result.IsLockedOut)
         {
-            return Ok(await GerarJwt(usuarioLogin.Email));
+            AdicionarErroProcessamento("Usuário temporariamente bloqueado por tentativas inválidas. Tente novamente mais tarde");
+            return CustomResponse();
         }
 
-        return BadRequest();
+        if(!result.Succeeded)
+        {
+            AdicionarErroProcessamento("Usuário ou Senha incorrectos, tente novamente");
+            return CustomResponse();
+        }
+
+        return CustomResponse(await GerarJwt(usuarioLogin.Email));
     }
 
     private async Task<UsuarioRespostaLogin> GerarJwt(string email)
     {
         var user = await _userManager.FindByEmailAsync(email);
         var claims = await _userManager.GetClaimsAsync(user);
+        
+        var identityClaims = await ObterClaimsUsuario(claims, user);
+        var encodedToken = CodificarToken(identityClaims);
+
+        return ObterRespostaToken(encodedToken, user, claims);
+    }
+
+    private async Task<ClaimsIdentity> ObterClaimsUsuario(ICollection<Claim> claims, IdentityUser user)
+    {
         var userRoles = await _userManager.GetRolesAsync(user);
 
         claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.Id));
@@ -86,6 +102,11 @@ public class AuthController : Controller
         var identityClaims = new ClaimsIdentity();
         identityClaims.AddClaims(claims);
 
+        return identityClaims;
+    }
+
+    private string CodificarToken(ClaimsIdentity identityClaims)
+    {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
 
@@ -98,9 +119,12 @@ public class AuthController : Controller
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         });
 
-        var encodedToken = tokenHandler.WriteToken(token);
+        return tokenHandler.WriteToken(token);
+    }
 
-        var response = new UsuarioRespostaLogin
+    private UsuarioRespostaLogin ObterRespostaToken(string encodedToken, IdentityUser user, IEnumerable<Claim> claims)
+    {
+        return  new UsuarioRespostaLogin
         {
             AccessToken = encodedToken,
             ExpiresIn = TimeSpan.FromHours(_appSettings.ExpiracaoHoras).TotalSeconds,
@@ -111,8 +135,6 @@ public class AuthController : Controller
                 Claims = claims.Select(c => new UsuarioClaim { Type = c.Type, Value = c.Value })
             }
         };
-
-        return response;
     }
 
     private static long ToUnisEpochDate(DateTime date)
