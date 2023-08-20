@@ -6,6 +6,13 @@ D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\bi
 D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\bin\Debug\net7.0\NSE.WebApp.MVC.runtimeconfig.json
 D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\bin\Debug\net7.0\NSE.WebApp.MVC.dll
 D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\bin\Debug\net7.0\NSE.WebApp.MVC.pdb
+D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
 D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\obj\Debug\net7.0\NSE.WebApp.MVC.csproj.AssemblyReference.cache
 D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\obj\Debug\net7.0\NSE.WebApp.MVC.GeneratedMSBuildEditorConfig.editorconfig
 D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\obj\Debug\net7.0\NSE.WebApp.MVC.AssemblyInfoInputs.cache
@@ -21,9 +28,12 @@ D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\ob
 D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\obj\Debug\net7.0\staticwebassets.pack.json
 D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\obj\Debug\net7.0\staticwebassets.build.json
 D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\obj\Debug\net7.0\staticwebassets.development.json
+D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\obj\Debug\net7.0\scopedcss\Views\Shared\Components\Summary\Default.cshtml.rz.scp.css
 D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\obj\Debug\net7.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\obj\Debug\net7.0\scopedcss\Views\Shared\_LoginPartial.cshtml.rz.scp.css
 D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\obj\Debug\net7.0\scopedcss\bundle\NSE.WebApp.MVC.styles.css
 D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\obj\Debug\net7.0\scopedcss\projectbundle\NSE.WebApp.MVC.bundle.scp.css
+D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\obj\Debug\net7.0\NSE.WebApp.MVC.csproj.CopyComplete
 D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\obj\Debug\net7.0\NSE.WebApp.MVC.dll
 D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\obj\Debug\net7.0\refint\NSE.WebApp.MVC.dll
 D:\Projectos\Web\.net\courses\NerdStoreEnterprise\src\services\NSE.WebApp.MVC\obj\Debug\net7.0\NSE.WebApp.MVC.pdb
